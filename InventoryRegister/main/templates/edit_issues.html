@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+ {%block header %}
+    <h2 style="text-align:center">Edit Issue Record</h2>
+{% endblock header %}
+<form method="post" style="width:95%; margin: 0 auto" >
+   {% csrf_token %}
+    {% bootstrap_form form %}
+    <button name="submit" class="btn btn-primary" style="width:100%; margin: 0 auto">PRESS BUTTON TO UPDATE</button>
+</form>
+{% endblock %}

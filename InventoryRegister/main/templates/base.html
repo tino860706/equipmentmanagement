@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> Air Zimbabwe IT Equipment Management System</title>
+    <style>
+         body,
+		 html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			/**background: #87ceeb !important;*/
+		}
+        #hello-msg {
+            font-size: 18px;
+            color: #fff;
+            margin-right: 20px;
+
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark"
+     style="margin: 0 auto; width:100%; position:fixed; top:0px; z-index:100">
+        <a class="navbar-brand" href="/"><i style="font-size:24px "><b></b></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class='nav-item {% if request.path == "/" %}active{% endif %}'>
+                    <a class="nav-link" href="/"><button class="btn btn-sm btn-primary" style="background-color:green">Home</button></a>
+                </li>
+               <!-- <li class='nav-item {% if request.path == "/about-us/" %}active{% endif %}'>
+                    <a class="nav-link"  href="/about-us/">About us</a>
+                </li>-->
+                {% if request.user.is_staff%}
+                <li class='nav-item {% if request.path == "/contact-us/" %}active{% endif %}'>
+                    <a  class="nav-link" href="/issues/"><button class="btn btn-sm btn-info" >New issue</button></a>
+                    <a class="nav-link"  href="/contact-us/"></a>
+                </li>
+                <!--
+                <li class="nav-item">
+                    <a class="nav-link" href="/export_excel/"><button class="btn btn-sm btn-secondary">excel report</button></a>
+
+                </li>
+                -->
+                <!--
+                <li class="nav-item">
+                    <a class="nav-link" href="/export_csv/"><button class="btn btn-secondary">csv report</button></a>
+
+                </li>
+                -->
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'main:export_pdf' %}"><button class="btn btn-sm btn-info">pdf report</button></a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/"><button class="btn btn-sm btn-info" style="background-color:purple">Dashboard</button></a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/register/"><button class="btn btn-sm btn-info" style="background-color:purple">Register</button></a>
+                </li>
+                {% endif %}
+                {% if not request.user.is_authenticated %}
+                 <li class="nav-item">
+                    <a class="nav-link" href="/login/"><button class="btn btn-sm btn-info" style="background-color:purple">Login</button></a>
+                </li>
+                {% endif %}
+                <li>
+                    <form action="/" method="get" class="form-inline mt-2 mt-md-0">
+                        <input id="q" name="q" value="{{ request.GET.q|capfirst }}" class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+                        <button class="btn btn-outline-success fa fa-search my-2 my-sm-0" type="submit" style=""></button>
+                     </form>
+                </li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 </li>
+                 <li class="nav-item">
+                    <button id="hello-msg" class="btn btn-sm btn-info"><a  href="/logout/">Welcome, {{request.user}} Logout</a></button>
+                </li>
+            </ul>
+        </div>
+        <br />
+        <br />
+
+        <div>
+
+        </div>
+    </nav>
+    <br />
+{% block content %}
+{% endblock %}
+<br>
+<footer class="webintern-footer" style="background-color:gray; color:#fff; position:scroll; bottom:0px; width:100%">
+<div class="simple-text dark padding-sm" style="margin: 0 auto; width:100; z-index:100%; font-size:16px;">
+<p>
+    This is system is for Air Zimbabwe  Information Technology Department Inventory Management purposes only. And is only for authorised users.
+    Kindly note that,  only authorised users can access this system. Your compliance is valued. Thank you.
+</p>
+</div>
+<!--
+<div class="simple-text last dark ">
+<p>Get latest updates and offers.</p>
+</div>
+-->
+<div class="tt-copy">
+<div class="container">
+<div class="row">
+<div class="col-sm-6">
+<div class="tt-copy-left">Copyright &copy; AirZim 2022. All rights reserved. </div>
+</div>
+<div class="col-sm-6">
+<div class="tt-copy-right">
+Created by: Tinodashe Kayenie &copy; superlight Intelligence Technologies
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+  <h2 style="text-align:center;">Issue Equipment</h2>
+  <form method="post" style="margin: 0 auto; width:95%">
+     {% csrf_token %}
+     {% bootstrap_form form %}
+      <button name="submit" class="btn btn-primary" style="margin: 0 auto; width:100%">PRESS TO ISSUE</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+     {% block content %}
+        {% block header %}
+            <style>
+        th{
+
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: green;
+        }
+        </style>
+    {% endblock header %}
+    <h2 style="text-align:center;">Air Zimbabwe IT Equipment Management System</h2>
+ <div class="row">
+     <div class="col-md">
+         <div class="card card-body">
+    <table id="users" class="table table-striped table-bordered table-hover" style="margin: 0 auto; width:95%;">
+        <thead style="color: #fff; background-color: #20b2aa;">
+        <tr>
+            <th>Entry Number</th>
+             <th>Date Of Issue</th>
+             <th>Recipient</th>
+             <th>Department</th>
+             <th>Category</th>
+             <th>Description</th>
+             <th>Serial Number</th>
+             <th>Status</th>
+             <th>Update Record</th>
+             <th>Delete Record</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for qpt in equipment %}
+
+            <tr>
+                <td class="table-data" scope="row">{{ forloop.counter }}</td>
+                <td >{{qpt.date_of_issue|date:"M d Y" }}</td>
+                <td class="active">{{qpt.name}}</td>
+                <td>{{qpt.department}}</td>
+                <td>{{qpt.equipment_category}}</td>
+                <td>{{qpt.description}}</td>
+                <td>{{qpt.serial_number}}</td>
+                <td>{{qpt.status}}</td>
+                <td><a class="btn btn-sm btn-info" href="{% url 'main:edit_issues' qpt.id %}" style="color:#fff">update <i class="glyphicon !important" style="font-size:16px">&#x270f;</i></a> </td>
+                <td class="danger"><a class="btn btn-sm btn-danger" href="{% url 'main:delete' qpt.id %}" style="color:#000"><i class="fa fa-trash-o" style="text-color:red; font-size:24px"><!--&#xf014;--></i></a> </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+         </div>
+         </div>
+    </div>
+{% endblock %}
+
+
+

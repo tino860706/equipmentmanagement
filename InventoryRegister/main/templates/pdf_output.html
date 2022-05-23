@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Output</title>
+    <style>
+        @page{
+            size: "A4";
+            margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+          @top-center{
+                content: "Air Zimbabwe IT Equipment Report";
+            }
+            @bottom-right{
+                 content: "Page " counter(page) " of " counter(pages);
+             }
+
+        }
+    </style>
+    <hr>
+</head>
+<body>
+    <h2>Issues Table</h2>
+
+    <table class="table">
+        <thead class="thead">
+            <tr>
+               <th>Entry Number</th>
+                 <th>Date Of Issue</th>
+                 <th>Recipient </th>
+                 <th>Department</th>
+                 <th>Category</th>
+                 <th>Description</th>
+                 <th>Serial Number</th>
+                 <th>Status</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+        {% for qpt in equipment %}
+
+            <tr>
+                <th>{{ forloop.counter }}</th>
+                <td>{{qpt.date_of_issue|date:"M d Y"}}</td>
+                <td>{{qpt.name}}</td>
+                <td>{{qpt.department}}</td>
+                <td>{{qpt.equipment_category}}</td>
+                <td>{{qpt.description}}</td>
+                <td>{{qpt.serial_number}}</td>
+                <td>{{qpt.status}}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</body>
+</html>
+
+
+

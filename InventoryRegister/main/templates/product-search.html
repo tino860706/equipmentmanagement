@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django Search</title>
+</head>
+<body>
+
+<form action="{% url 'main:search' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="name">
+    <input type="submit" name="submit" value="Search">
+</form>
+{% for result in results %}
+    {% if result %}
+    <p>{{result.name}}</p>
+    <p>{{result.department}}</p>
+    {% else %}
+     <p>No match for your search!</p>
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>
